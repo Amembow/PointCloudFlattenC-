@@ -86,6 +86,9 @@ namespace 練習
 
             for (int l = 1; l < k; k++) ;
             { Parallel.For((l)}
+
+            うんこ
+            
         }
     }
 }
