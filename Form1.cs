@@ -34,7 +34,6 @@ namespace 練習
 
             foreach (var it in System.IO.Directory.GetFiles(textBox1.Text))
             {
-                //j +=1;
                 path = System.IO.Path.GetFileName(it);
                 Array.Resize(ref Arr, Arr.Length + 1);
                 Arr[Arr.Length - 1] = path;
@@ -52,21 +51,21 @@ namespace 練習
                 Filter = "posファイル|*.pos"
             };
 
-
             string pos;
+            string[,] PArr = { { "aa", "bb" } ,  };
+            string lineStr;
+            string[] SP;
+            int linecount;
 
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 pos = dlg.FileName;
                 var rt = new System.IO.StreamReader(pos);
-                int linecount = rt.ReadToEnd().Split(new[] { '\n', '\r' }).Length;
-                string lineStr;
-                string[] SP;
+                linecount = rt.ReadToEnd().Split(new[] { '\n', '\r' }).Length;
+                PArr = new string[linecount, 10];
 
-                Console.WriteLine(linecount);
-
-                string[,] PArr = new string[linecount,10];
+                Console.WriteLine(linecount);                
 
                 for (int m = 1; m < linecount; m++)
                 { 
@@ -84,11 +83,30 @@ namespace 練習
                 MessageBox.Show("POSを指定してください");
             }
 
-            for (int l = 1; l < k; k++) ;
-            { Parallel.For((l)}
+            string fname;
+ 
 
-            うんこ
+            for (int l = 1; l < k; k++) 
+            {
+                Parallel.For((l - 1) * para + 1, para * l + 1, i =>
+                {
+                    Console.WriteLine(i);
+                    fname = Arr[i];
+
+                    Process(PArr ,fname) ;
+                
+                });
+                
+            }
+
             
         }
+
+
+        private void Process(string[,] Parr, string fname) 
+        {
+
+        }
+
     }
 }
