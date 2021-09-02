@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
 namespace 練習
 {
     public partial class Form1 : Form
@@ -34,7 +35,6 @@ namespace 練習
 
             foreach (var it in System.IO.Directory.GetFiles(textBox1.Text))
             {
-                //j +=1;
                 path = System.IO.Path.GetFileName(it);
                 Array.Resize(ref Arr, Arr.Length + 1);
                 Arr[Arr.Length - 1] = path;
@@ -52,21 +52,21 @@ namespace 練習
                 Filter = "posファイル|*.pos"
             };
 
-
             string pos;
+            string[,] PArr = { { "aa", "bb" } ,  };
+            string lineStr;
+            string[] SP;
+            int linecount;
 
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 pos = dlg.FileName;
                 var rt = new System.IO.StreamReader(pos);
-                int linecount = rt.ReadToEnd().Split(new[] { '\n', '\r' }).Length;
-                string lineStr;
-                string[] SP;
+                linecount = rt.ReadToEnd().Split(new[] { '\n', '\r' }).Length;
+                PArr = new string[linecount, 10];
 
-                Console.WriteLine(linecount);
-
-                string[,] PArr = new string[linecount,10];
+                Console.WriteLine(linecount);                
 
                 for (int m = 1; m < linecount; m++)
                 { 
@@ -84,11 +84,62 @@ namespace 練習
                 MessageBox.Show("POSを指定してください");
             }
 
-            for (int l = 1; l < k; k++) ;
-            { Parallel.For((l)}
+            string fname;
+ 
 
-            うんこ
+            for (int l = 1; l < k; k++) 
+            {
+                Parallel.For((l - 1) * para + 1, para * l + 1, i =>
+                {
+                    Console.WriteLine(i);
+                    fname = Arr[i];
+
+                    Process(PArr ,fname) ;
+                
+                });
+                
+            }
+
             
         }
+
+
+        private void Process(string[,] Parr, string fname) 
+        {
+            var IF = new System.IO.StreamReader(textBox1.Text + "/" + fname);
+            var OF = new System.IO.StreamWriter(textBox2.Text + "/" + fname);
+            int Sys = int.Parse(textBox3.Text);
+            string lineStr;
+            string[] SP;
+            int n = 1;
+            double hight;
+            double CarHight = 2.036;
+            double x1;
+            double x2;
+            double y1;
+            double y2;
+
+
+            lineStr = IF.ReadLine();
+            SP = lineStr.Split(' ');
+
+            while (IF.EndOfStream)
+            {
+                if (double.Parse(Parr[n, 0]) > double.Parse(SP[4]))
+                {
+                    lineStr = IF.ReadLine();
+                    SP = lineStr.Split(' ');
+                    hight = double.Parse(SP[2]) - double.Parse(Parr[n, 3]) + CarHight;
+
+                    Function z = new Function();
+                    y1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2]);
+
+                }
+            }
+
+        }
+
+
+
     }
 }
