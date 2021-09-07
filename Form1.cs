@@ -112,12 +112,10 @@ namespace 練習
             string lineStr;
             string[] SP;
             int n = 1;
-            double hight;
+            double hight, Dist,Xr;
             double CarHight = 2.036;
-            double x1;
-            double x2;
-            double y1;
-            double y2;
+            double x,y,x1, x2, y1, y2, a, b, c, angle;
+            string flag;
 
 
             lineStr = IF.ReadLine();
@@ -132,7 +130,38 @@ namespace 練習
                     hight = double.Parse(SP[2]) - double.Parse(Parr[n, 3]) + CarHight;
 
                     Function z = new Function();
-                    y1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2]);
+                    y1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2])[0];
+                    y2 = z.ReprojectPoints(Parr[n, 1], Parr[n, 2])[0];
+                    x1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2])[1];
+                    x2 = z.ReprojectPoints(Parr[n, 1], Parr[n, 2])[1];
+
+                    //２点を通る１次方程式の求め方
+                    //点(x1,y1)と点(x2,y2)を通る直線の１次方程式は
+                    //(y1 - y2) * x - (x1 - x2) * y + (x1 - x2) * y1 - (y1 - y2) * x1 = 0
+
+                    a = y1 - y2;
+                    b = (x1 - x2) * (-1);
+                    c = (x1 - x2) * y1 - (y1 - y2) * x1;
+
+
+                    //a* x + b * y + c = 0
+                    //b* y = -c - a * x
+                    //y = -(c + a * x) / b
+
+                    //a* x = -b * y - c
+                    //x = -(b * y + c) / a
+
+                    if (checkBox1.Checked == true)
+                    {
+                        x = z.ReprojectPoints(Parr[n, 1], Parr[n, 2])[0] - double.Parse(SP[0]);
+                        y = z.ReprojectPoints(Parr[n, 1], Parr[n, 2])[1] - double.Parse(SP[1]);
+
+                        Dist = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
+                        Xr = Math.Abs(a * double.Parse(SP[1]) + b * double.Parse(SP[0]) + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
+                        angle = double.Parse(Parr[n, 4]);
+
+
+                    }
 
                 }
             }
