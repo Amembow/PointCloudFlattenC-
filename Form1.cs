@@ -132,7 +132,7 @@ namespace 練習
                     hight = double.Parse(SP[2]) - double.Parse(Parr[n, 3]) + CarHight;
 
                     Function z = new Function();
-                    y1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2]);
+                    y1 = z.ReprojectPoints(double.Parse(Parr[n - 1, 1]), double.Parse(Parr[n - 1, 2]));
 
                 }
             }

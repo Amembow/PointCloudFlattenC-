@@ -13,7 +13,7 @@ namespace 練習
         public ProjectionInfo proj4326 = ProjectionInfo.FromEpsgCode(4326);
         public ProjectionInfo proj2446 = ProjectionInfo.FromEpsgCode(2446);
 
-        public void ReprojectPoints(double x,double y)
+        public double[] ReprojectPoints(double x,double y)
         {
             var lat = double.Parse((y.ToString()));
             var lon = double.Parse(x.ToString());
@@ -21,6 +21,7 @@ namespace 練習
 
             var xy = ConvertLonLatToXY(lon, lat);
             Console.WriteLine(string.Format("x={0}, y={1}", xy[0], xy[1]));
+            return xy;
         }
 
         // 緯度経度→平面直角座標系
