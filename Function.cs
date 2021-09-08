@@ -32,5 +32,13 @@ namespace 練習
             var ret = new[] { lonlat[1], lonlat[0] };
             return ret;
         }
+
+        public double AffineY(double x1,double y1, double p) 
+        {
+            double angle = Math.PI * p / 180;
+            var y = x1 * Math.Sin(angle) + y1 * Math.Cos(angle);
+
+            return y;
+        }
     }
 }

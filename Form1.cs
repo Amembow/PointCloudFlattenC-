@@ -94,13 +94,9 @@ namespace 練習
                     Console.WriteLine(i);
                     fname = Arr[i];
 
-                    Process(PArr ,fname) ;
-                
-                });
-                
-            }
-
-            
+                    Process(PArr ,fname) ;                
+                });                
+            }            
         }
 
 
@@ -112,7 +108,7 @@ namespace 練習
             string lineStr;
             string[] SP;
             int n = 1;
-            double hight, Dist,Xr;
+            double hight, Dist,Xr,HightDif;
             double CarHight = 2.036;
             double x,y,x1, x2, y1, y2, a, b, c, angle;
             string flag;
@@ -160,15 +156,51 @@ namespace 練習
                         Xr = Math.Abs(a * double.Parse(SP[1]) + b * double.Parse(SP[0]) + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
                         angle = double.Parse(Parr[n, 4]);
 
+                        //アフィン変換
 
-                    }
+                        if (double.Parse(Parr[n, 6]) <= 90 || double.Parse(Parr[n, 6]) >= 270)
+                        {
+                            if (double.Parse(SP[1]) >= -(b * double.Parse(SP[0] + c) / a))
+                            {
+                                HightDif = z.AffineY(Xr, hight, angle);
+                                //flag
+                            }
+                            else
+                            {
+                                HightDif = z.AffineY(-Xr, hight, angle);
+                                //flag
+                            }
+                        }
+                        else 
+                        {
+                            if (double.Parse(SP[1]) >= -(b * double.Parse(SP[0] + c) / a))
+                            {
+                                HightDif = z.AffineY(-Xr, hight, angle);
+                                //flag
+                            }
+                            else
+                            {
+                                HightDif = z.AffineY(Xr, hight, angle);
+                                //flag
+                            }
+                        }
 
+                        if (double.IsNaN(HightDif)) 
+                        {
+                            Console.WriteLine(fname + "でNaNを検出しました。");
+                        }
+                        else 
+                        {
+                            OF.WriteLine(SP[0] + "," + SP[1] + "," + HightDif + "," + SP[3] + "," + SP[4]);
+                        }
+
+                     }
+                    else 
+                    {
+                        n += 1;
+                     }
                 }
             }
-
         }
-
-
-
     }
 }
