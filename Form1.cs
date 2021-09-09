@@ -126,10 +126,10 @@ namespace 練習
                     hight = double.Parse(SP[2]) - double.Parse(Parr[n, 3]) + CarHight;
 
                     Function z = new Function();
-                    y1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2])[0];
-                    y2 = z.ReprojectPoints(Parr[n, 1], Parr[n, 2])[0];
-                    x1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2])[1];
-                    x2 = z.ReprojectPoints(Parr[n, 1], Parr[n, 2])[1];
+                    y1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2], Sys)[0];
+                    y2 = z.ReprojectPoints(Parr[n, 1], Parr[n, 2], Sys)[0];
+                    x1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2], Sys)[1];
+                    x2 = z.ReprojectPoints(Parr[n, 1], Parr[n, 2], Sys)[1];
 
                     //２点を通る１次方程式の求め方
                     //点(x1,y1)と点(x2,y2)を通る直線の１次方程式は
@@ -149,8 +149,8 @@ namespace 練習
 
                     if (checkBox1.Checked == true)
                     {
-                        x = z.ReprojectPoints(Parr[n, 1], Parr[n, 2])[0] - double.Parse(SP[0]);
-                        y = z.ReprojectPoints(Parr[n, 1], Parr[n, 2])[1] - double.Parse(SP[1]);
+                        x = z.ReprojectPoints(Parr[n, 1], Parr[n, 2], Sys)[0] - double.Parse(SP[0]);
+                        y = z.ReprojectPoints(Parr[n, 1], Parr[n, 2], Sys)[1] - double.Parse(SP[1]);
 
                         Dist = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
                         Xr = Math.Abs(a * double.Parse(SP[1]) + b * double.Parse(SP[0]) + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
