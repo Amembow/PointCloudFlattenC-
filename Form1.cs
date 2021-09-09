@@ -19,9 +19,15 @@ namespace 練習
             InitializeComponent();
         }
 
+
+        [STAThread]
+        public static void Main() 
+        {
+            Application.Run(new Form1());
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            dynamic fso = Activator.CreateInstance(Type.GetTypeFromProgID("Scripting.FileSystemObject"));
+            //dynamic fso = Activator.CreateInstance(Type.GetTypeFromProgID("Scripting.FileSystemObject"));
 
             string path;
             string[] Arr = new string[0];
@@ -63,10 +69,10 @@ namespace 練習
             {
                 pos = dlg.FileName;
                 var rt = new System.IO.StreamReader(pos);
-                linecount = rt.ReadToEnd().Split(new[] { '\n', '\r' }).Length;
+                linecount = rt.ReadToEnd().Count(c => c == '\n') + 1;
                 PArr = new string[linecount, 10];
 
-                Console.WriteLine(linecount);                
+                Console.WriteLine(linecount);             
 
                 for (int m = 1; m < linecount; m++)
                 { 
@@ -202,5 +208,11 @@ namespace 練習
                 }
             }
         }
+
+        private static int Count3(string s)
+        {
+            return s.Count(c => c == '\n') + 1;
+        }
+
     }
 }
