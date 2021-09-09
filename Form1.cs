@@ -72,16 +72,16 @@ namespace 練習
                 linecount = rt.ReadToEnd().Count(c => c == '\n') + 1;
                 PArr = new string[linecount, 10];
 
-                Console.WriteLine(linecount);             
-
+                Console.WriteLine(linecount);
+                rt = new System.IO.StreamReader(pos);
                 for (int m = 1; m < linecount; m++)
                 { 
                     lineStr = rt.ReadLine();
                     SP = lineStr.Split(' ');
-                    for (int n = 1 ; n < 10 ; n++)
+                    for (int n = 0 ; n < 10 ; n++)
                     {
                         PArr[m, n] = SP[n];
-                        Console.WriteLine(PArr[m, n]);                    
+                        //Console.WriteLine(PArr[m, n]);                    
                     }
                 }
             }
@@ -102,7 +102,9 @@ namespace 練習
 
                     Process(PArr ,fname) ;                
                 });                
-            }            
+            }
+
+            MessageBox.Show("End");
         }
 
 
@@ -117,18 +119,18 @@ namespace 練習
             double hight, Dist,Xr,HightDif;
             double CarHight = 2.036;
             double x,y,x1, x2, y1, y2, a, b, c, angle;
-            string flag;
+            //string flag;
 
 
             lineStr = IF.ReadLine();
-            SP = lineStr.Split(' ');
+            SP = lineStr.Split(',');
 
-            while (IF.EndOfStream)
+            while (IF.EndOfStream==false)
             {
                 if (double.Parse(Parr[n, 0]) > double.Parse(SP[4]))
                 {
                     lineStr = IF.ReadLine();
-                    SP = lineStr.Split(' ');
+                    SP = lineStr.Split(',');
                     hight = double.Parse(SP[2]) - double.Parse(Parr[n, 3]) + CarHight;
 
                     Function z = new Function();
@@ -198,6 +200,7 @@ namespace 練習
                         else 
                         {
                             OF.WriteLine(SP[0] + "," + SP[1] + "," + HightDif + "," + SP[3] + "," + SP[4]);
+                            Console.WriteLine(SP[0] + "," + SP[1] + "," + HightDif + "," + SP[3] + "," + SP[4]);
                         }
 
                      }
@@ -209,10 +212,6 @@ namespace 練習
             }
         }
 
-        private static int Count3(string s)
-        {
-            return s.Count(c => c == '\n') + 1;
-        }
 
     }
 }
