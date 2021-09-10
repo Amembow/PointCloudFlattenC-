@@ -93,7 +93,7 @@ namespace 練習
             string fname;
  
 
-            for (int l = 1; l < k; k++) 
+            for (int l = 1; l < k; l++) 
             {
                 Parallel.For((l - 1) * para + 1, para * l + 1, i =>
                 {
