@@ -95,13 +95,13 @@ namespace 練習
 
             for (int l = 1; l < k; k++) 
             {
-                Parallel.For((l - 1) * para + 1, para * l + 1, i =>
-                {
-                    Console.WriteLine(i);
-                    fname = Arr[i];
+                //Parallel.For((l - 1) * para + 1, para * l + 1, i =>
+                //{
+                    Console.WriteLine(l);
+                    fname = Arr[l];
 
                     Process(PArr ,fname) ;                
-                });                
+                //});                
             }
 
             MessageBox.Show("End");
