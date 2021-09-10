@@ -134,10 +134,10 @@ namespace 練習
                     hight = double.Parse(SP[2]) - double.Parse(Parr[n, 3]) + CarHight;
 
                     Function z = new Function();
-                    y1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2], Sys)[0];
-                    y2 = z.ReprojectPoints(Parr[n, 1], Parr[n, 2], Sys)[0];
-                    x1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2], Sys)[1];
-                    x2 = z.ReprojectPoints(Parr[n, 1], Parr[n, 2], Sys)[1];
+                    y1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2], Sys)[1];
+                    y2 = z.ReprojectPoints(Parr[n, 1], Parr[n, 2], Sys)[1];
+                    x1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2], Sys)[0];
+                    x2 = z.ReprojectPoints(Parr[n, 1], Parr[n, 2], Sys)[0];
 
                     //２点を通る１次方程式の求め方
                     //点(x1,y1)と点(x2,y2)を通る直線の１次方程式は
@@ -168,7 +168,7 @@ namespace 練習
 
                         if (double.Parse(Parr[n, 6]) <= 90 || double.Parse(Parr[n, 6]) >= 270)
                         {
-                            if (double.Parse(SP[1]) >= -(b * double.Parse(SP[0] + c) / a))
+                            if (double.Parse(SP[1]) >= -(b * double.Parse(SP[0]) + c) / a)
                             {
                                 HightDif = z.AffineY(Xr, hight, angle);
                                 //flag
@@ -181,7 +181,7 @@ namespace 練習
                         }
                         else 
                         {
-                            if (double.Parse(SP[1]) >= -(b * double.Parse(SP[0] + c) / a))
+                            if (double.Parse(SP[1]) >= -(b * double.Parse(SP[0]) + c) / a)
                             {
                                 HightDif = z.AffineY(-Xr, hight, angle);
                                 //flag

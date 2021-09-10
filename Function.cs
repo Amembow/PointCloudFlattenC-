@@ -14,9 +14,9 @@ namespace 練習
 
         public double[] ReprojectPoints(string x,string y,int sys)
         {
-            var lat = double.Parse((y.ToString()));
-            var lon = double.Parse(x.ToString());
-            Console.WriteLine(string.Format("deg lon={0}, lat={1}", lon, lat));
+            var lat = double.Parse((x.ToString()));
+            var lon = double.Parse(y.ToString());
+            //Console.WriteLine(string.Format("deg lon={0}, lat={1}", lon, lat));
 
             var xy = ConvertLonLatToXY(lon, lat,sys);
             Console.WriteLine(string.Format("x={0}, y={1}", xy[0], xy[1]));
@@ -26,11 +26,11 @@ namespace 練習
         // 緯度経度→平面直角座標系
         public double[] ConvertLonLatToXY(double lon, double lat,int sys)
         {
-            DotSpatial.Projections.ProjectionInfo proj = ProjectionInfo.FromEpsgCode(6669);
+            DotSpatial.Projections.ProjectionInfo proj = ProjectionInfo.FromEpsgCode(2443);
             switch (sys) 
             {
                 case 1:
-                    proj = ProjectionInfo.FromEpsgCode(6669); //1系
+                    proj = ProjectionInfo.FromEpsgCode(2443); //1系
                     break;
                 case 2:
                     proj = ProjectionInfo.FromEpsgCode(2444); //2系
