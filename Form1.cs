@@ -47,7 +47,7 @@ namespace 練習
                 Console.WriteLine(Arr[Arr.Length - 1]);
             }
 
-            int count = Arr.Length, k = count * para;
+            int count = Arr.Length, k = count / para;
 
             var dlg = new OpenFileDialog()
             {
@@ -95,14 +95,24 @@ namespace 練習
 
             for (int l = 1; l < k; k++) 
             {
-                //Parallel.For((l - 1) * para + 1, para * l + 1, i =>
-                //{
-                    Console.WriteLine(l);
-                    fname = Arr[l];
+                Parallel.For((l - 1) * para + 1, para * l + 1, i =>
+                {
+                    Console.WriteLine(i);
+                    fname = Arr[i];
 
                     Process(PArr ,fname) ;                
-                //});                
+                });                
             }
+
+
+
+            Parallel.For((k -1) * para + 1, count, i =>
+            {
+                Console.WriteLine(i);
+                fname = Arr[i];
+
+                Process(PArr, fname);
+            });
 
             MessageBox.Show("End");
         }
@@ -134,10 +144,12 @@ namespace 練習
                     hight = double.Parse(SP[2]) - double.Parse(Parr[n, 3]) + CarHight;
 
                     Function z = new Function();
-                    y1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2], Sys)[1];
-                    y2 = z.ReprojectPoints(Parr[n, 1], Parr[n, 2], Sys)[1];
-                    x1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2], Sys)[0];
-                    x2 = z.ReprojectPoints(Parr[n, 1], Parr[n, 2], Sys)[0];
+                    y1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2], Sys)[0];
+                    y2 = z.ReprojectPoints(Parr[n, 1], Parr[n, 2], Sys)[0];
+                    x1 = z.ReprojectPoints(Parr[n - 1, 1], Parr[n - 1, 2], Sys)[1];
+                    x2 = z.ReprojectPoints(Parr[n, 1], Parr[n, 2], Sys)[1];
+
+                    //Console.WriteLine("y1:" + y1 + "  x1:" + x1);
 
                     //２点を通る１次方程式の求め方
                     //点(x1,y1)と点(x2,y2)を通る直線の１次方程式は
@@ -200,7 +212,7 @@ namespace 練習
                         else 
                         {
                             OF.WriteLine(SP[0] + "," + SP[1] + "," + HightDif + "," + SP[3] + "," + SP[4]);
-                            Console.WriteLine(SP[0] + "," + SP[1] + "," + HightDif + "," + SP[3] + "," + SP[4]);
+                            //Console.WriteLine(SP[0] + "," + SP[1] + "," + HightDif + "," + SP[3] + "," + SP[4]);
                         }
 
                      }

@@ -19,7 +19,7 @@ namespace 練習
             //Console.WriteLine(string.Format("deg lon={0}, lat={1}", lon, lat));
 
             var xy = ConvertLonLatToXY(lon, lat,sys);
-            Console.WriteLine(string.Format("x={0}, y={1}", xy[0], xy[1]));
+            //Console.WriteLine(string.Format("x={0}, y={1}", xy[0], xy[1]));
             return xy;
         }
 
