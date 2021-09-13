@@ -43,7 +43,7 @@ namespace 練習
             {
                 path = System.IO.Path.GetFileName(it);
                 Array.Resize(ref Arr, Arr.Length + 1);
-                Arr[Arr.Length - 2] = path;
+                Arr[Arr.Length - 1] = path;
                 Console.WriteLine(Arr[Arr.Length - 1]);
             }
 
@@ -95,7 +95,7 @@ namespace 練習
 
             for (int l = 1; l < k; l++) 
             {
-                Parallel.For((l - 1) * para + 1, para * l + 1, i =>
+                Parallel.For((l - 1) * para , para * l + 1, i =>
                 {
                     Console.WriteLine(i);
                     fname = Arr[i];
